@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./Navbar.css"; // Assuming the styles are in Navbar.css
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark"  style={{ height: '40px', paddingTop: '5px', paddingBottom: '5px' }}>
-      {" "}
-      {/* Custom color classes */}
+    <nav
+      className="navbar navbar-expand-lg navbar-dark bg-dark"
+      style={{ height: "40px", paddingTop: "5px", paddingBottom: "5px" }}
+    >
       <div className="container">
         {/* Logo link */}
         <Link to="/" className="navbar-brand">
-          <img src="/images/sjjmlogo.jpg" alt="Logo" className="navbar-logo" style={{ height: '30px', width: 'auto' }}/>
+          <img
+            src="/images/sjjmlogo.jpg"
+            alt="Logo"
+            className="navbar-logo"
+            style={{ height: "30px", width: "auto" }}
+          />
         </Link>
         {/* Toggle button for mobile screens */}
         <button
@@ -25,39 +30,29 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navbar links (collapsed on xs screens) */}
+        {/* Navbar links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {" "}
-            {/* ms-auto aligns the links to the right */}
             <li className="nav-item">
               <Link to="/emp-list" className="nav-link text-white">
                 Employee Master
-              </Link>{" "}
-              {/* White text */}
+              </Link>
             </li>
             <li className="nav-item">
               <Link to="/meal-form" className="nav-link text-white">
                 Meals Entry Form
-              </Link>{" "}
-              {/* White text */}
+              </Link>
             </li>
-            
             <li className="nav-item">
               <Link to="/Entry-meals" className="nav-link text-white">
                 Meals Data
-              </Link>{" "}
-              {/* White text */}
+              </Link>
             </li>
-
             <li className="nav-item">
               <Link to="/calculated-meals" className="nav-link text-white">
                 Reports
-              </Link>{" "}
-              {/* White text */}
+              </Link>
             </li>
-            
-            
           </ul>
         </div>
       </div>

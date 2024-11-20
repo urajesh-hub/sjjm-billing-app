@@ -1,0 +1,30 @@
+/* Navbar background color */
+.navbar {
+  background-color: #454b52; /* Custom blue color */
+}
+
+/* Logo text color */
+.navbar-brand {
+  color: #fff !important; /* White color */
+}
+
+/* Navbar link color */
+.navbar-nav .nav-link {
+  color: #fff !important; /* White color */
+}
+
+/* Navbar link hover color */
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa !important; /* Lighter color when hovered */
+}
+
+/* Toggle button color */
+.navbar-toggler-icon {
+  background-color: #fff; /* White icon */
+}
+
+/* Active link color */
+.navbar-nav .nav-link.active {
+  color: #f8f9fa !important; /* Lighter color when active */
+}
+

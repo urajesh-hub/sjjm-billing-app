@@ -14,7 +14,7 @@ const Home = () => {
           <div className="my-4">
             <NavLink to="/" className="navbar-brand">
               <img
-                src="/images/Entrance.jpg"
+                src="/images/Entrance1.jpg"
                 alt="Entrance"
                 className="img-fluid rounded shadow-sm border"
                 style={{

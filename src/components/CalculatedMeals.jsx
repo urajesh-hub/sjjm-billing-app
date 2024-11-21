@@ -68,6 +68,7 @@ const CalculatedMeals = () => {
       return {
         empCode: emp.empCode,
         empName: emp.empName,
+        category: emp.category,
         department: emp.department,
         breakfastDays,
         lunchDays,
@@ -115,7 +116,7 @@ const CalculatedMeals = () => {
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
           >
             {[...Array(5)].map((_, i) => {
-              const year = new Date().getFullYear() - i;
+              const year = new Date().getFullYear() + i;
               return <option key={year} value={year}>{year}</option>;
             })}
           </select>
@@ -158,7 +159,7 @@ const CalculatedMeals = () => {
         <table className="table table-bordered table-striped table-sm">
           <thead className="thead-dark text-center">
             <tr>
-              {['empCode', 'empName', 'department', 'breakfastDays', 'lunchDays', 'dinnerDays', 'breakfastTotal', 'lunchTotal', 'dinnerTotal', 'grandAmount'].map((col) => (
+              {['empCode', 'empName','category', 'department', 'breakfastDays', 'lunchDays', 'dinnerDays', 'breakfastTotal', 'lunchTotal', 'dinnerTotal', 'grandAmount'].map((col) => (
                 <th key={col} onClick={() => handleSort(col)} style={{ cursor: 'pointer' }}>
                   {col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1').toUpperCase()}
                   {sortConfig.key === col ? (sortConfig.direction === 'asc' ? ' ↑' : ' ↓') : ''}
@@ -171,6 +172,7 @@ const CalculatedMeals = () => {
               <tr key={emp.empCode}>
                 <td>{emp.empCode}</td>
                 <td className="text-start">{emp.empName}</td>
+                <td>{emp.category}</td>
                 <td>{emp.department}</td>
                 <td>{emp.breakfastDays}</td>
                 <td>{emp.lunchDays}</td>

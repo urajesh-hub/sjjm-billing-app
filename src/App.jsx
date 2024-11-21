@@ -6,6 +6,8 @@ import EmpList from './components/EmpList';
 import CalculatedMeals from './components/CalculatedMeals';
 import Home from './components/Home';
 import MealFormManager from './components/MealFormManager';
+import Category from './components/Category';
+
 
 
 
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/emp-list" element={<EmpList />} />
           <Route path="/calculated-meals" element={<CalculatedMeals />} />
           <Route path="/Entry-meals" element={<MealFormManager />} />
+          <Route path="//category-meals" element={<Category />} />
         
         </Routes>
       </div>

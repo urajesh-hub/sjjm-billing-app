@@ -29,11 +29,12 @@ const MealForm = () => {
     setSelectedDepartment(e.target.value);
   };
 
-  const handleCheckboxChange = (empCode, empName, department, mealType) => {
+  const handleCheckboxChange = (empCode, empName,category, department, mealType) => {
     setMealSelections((prev) => ({
       ...prev,
       [empCode]: {
         empName,
+        category,
         department,
         ...prev[empCode],
         [mealType]: !prev[empCode]?.[mealType] || false,
@@ -50,6 +51,7 @@ const MealForm = () => {
       .map(emp => ({
         empCode: emp.empCode,
         empName: emp.empName,
+        category:emp.category,
         department: emp.department,
         date: selectedDate,
         breakfast: mealSelections[emp.empCode]?.breakfast || false,
@@ -129,6 +131,7 @@ const MealForm = () => {
                   <tr className="text-center">
                     <th>Emp Code</th>
                     <th>Emp Name</th>
+                    <th>CATEGORY</th>
                     <th>DEPT</th>
                     <th>BREAKFAST</th>
                     <th>LUNCH</th>
@@ -139,14 +142,15 @@ const MealForm = () => {
                   {filteredEmpData.map((emp) => (
                     <tr key={emp.empCode}>
                       <td className="text-center">{emp.empCode}</td>
-                      <td>{emp.empName}</td>
+                      <td >{emp.empName}</td>
+                      <td className="text-center">{emp.category}</td>
                       <td className="text-center">{emp.department}</td>
                       <td className="text-center">
                         <input
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.breakfast || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName, emp.department, "breakfast")
+                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "breakfast")
                           }
                         />
                       </td>
@@ -155,7 +159,7 @@ const MealForm = () => {
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.lunch || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName, emp.department, "lunch")
+                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "lunch")
                           }
                         />
                       </td>
@@ -164,7 +168,7 @@ const MealForm = () => {
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.dinner || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName, emp.department, "dinner")
+                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "dinner")
                           }
                         />
                       </td>

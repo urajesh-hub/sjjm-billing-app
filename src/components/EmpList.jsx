@@ -81,7 +81,7 @@ const EmpList = () => {
       fetchEmployees(); // Refresh data
     } catch (error) {
       console.error("Error submitting form", error);
-      alert("Failed to save data.");
+      alert("EmpCode Already Exits.");
     }
   };
 

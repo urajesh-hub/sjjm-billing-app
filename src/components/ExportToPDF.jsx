@@ -11,7 +11,7 @@ const ExportToPDF = ({ totals, selectedYear, selectedMonth }) => {
 
     // Center the Company Name
     doc.setFont("helvetica", "bold");
-    const companyName = "SJJM";
+    const companyName = "Sri Jayajothi and Company Private Limited";
     const pageWidth = doc.internal.pageSize.width;
     const companyNameWidth = doc.getTextWidth(companyName);
     const companyNameX = (pageWidth - companyNameWidth) / 2;

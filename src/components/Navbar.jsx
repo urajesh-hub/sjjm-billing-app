@@ -1,18 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import "./Navbar.css"; // Assuming the styles are in Navbar.css
+import { NavLink } from "react-router-dom";
+import "./Navbar.css"; // Import the CSS file
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark"  style={{ height: '40px', paddingTop: '5px', paddingBottom: '5px' }}>
-      {" "}
-      {/* Custom color classes */}
+    <nav className="navbar navbar-expand-lg navbar-dark ">
       <div className="container">
-        {/* Logo link */}
-        <Link to="/" className="navbar-brand">
-          <img src="/images/sjjmlogo.jpg" alt="Logo" className="navbar-logo" style={{ height: '30px', width: 'auto' }}/>
-        </Link>
-        {/* Toggle button for mobile screens */}
+        {/* Logo */}
+        <NavLink to="/" className="navbar-brand ">
+          <img src="/images/sjjmlogo.jpg" alt="Logo" />
+        </NavLink>
+        {/* Toggle Button */}
         <button
           className="navbar-toggler"
           type="button"
@@ -24,40 +22,41 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        {/* Navbar links (collapsed on xs screens) */}
+        {/* Menu */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {" "}
-            {/* ms-auto aligns the links to the right */}
             <li className="nav-item">
-              <Link to="/emp-list" className="nav-link text-white">
+              <NavLink
+                to="/emp-list"
+                className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+              >
                 Employee Master
-              </Link>{" "}
-              {/* White text */}
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/meal-form" className="nav-link text-white">
+              <NavLink
+                to="/meal-form"
+                className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+              >
                 Meals Entry Form
-              </Link>{" "}
-              {/* White text */}
+              </NavLink>
             </li>
-            
             <li className="nav-item">
-              <Link to="/Entry-meals" className="nav-link text-white">
+              <NavLink
+                to="/Entry-meals"
+                className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+              >
                 Meals Data
-              </Link>{" "}
-              {/* White text */}
+              </NavLink>
             </li>
-
             <li className="nav-item">
-              <Link to="/calculated-meals" className="nav-link text-white">
+              <NavLink
+                to="/calculated-meals"
+                className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+              >
                 Reports
-              </Link>{" "}
-              {/* White text */}
+              </NavLink>
             </li>
-            
-            
           </ul>
         </div>
       </div>

@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 const ExportToExcel = ({ totals, selectedYear, selectedMonth }) => {
   const exportToExcel = () => {
     const dataWithHeader = [
-      { A: "Company Name" },
+      { A: "Sri Jayajothi and Company Private Limited" },
       { A: `Monthly Meals Report: ${new Date(selectedYear, selectedMonth - 1).toLocaleString("default", { month: "short", year: "numeric" })}` },
       {},
       { A: "EMP CODE", B: "EMP NAME", C: "DEPARTMENT", D: "BREAKFAST DAYS", E: "LUNCH DAYS", F: "DINNER DAYS", G: "BREAKFAST TOTAL", H: "LUNCH TOTAL", I: "DINNER TOTAL", J: "GRAND TOTAL" },

@@ -95,7 +95,7 @@ const Category = () => {
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
           >
             {Array.from({ length: 5 }, (_, i) => {
-              const year = new Date().getFullYear() +  i; // Starts from 2020 and ends at 2024
+              const year = new Date().getFullYear() + i; // Starts from 2020 and ends at 2024
               return (
                 <option key={year} value={year}>
                   {year}
@@ -133,7 +133,6 @@ const Category = () => {
             id="date"
             value={selectedDate}
             onChange={handleDateChange}
-            
           />
         </div>
 
@@ -158,7 +157,7 @@ const Category = () => {
               <th>DINNER</th>
             </tr>
           </thead>
-          <tbody className="text-center">
+          {/* <tbody className="text-center">
             {Object.keys(categoryWiseData).map((category) => (
               <tr key={category}>
                 <td>{category}</td>
@@ -167,6 +166,24 @@ const Category = () => {
                 <td>{categoryWiseData[category].dinner}</td>
               </tr>
             ))}
+          </tbody> */}
+          <tbody className="text-center">
+            {Object.keys(categoryWiseData).length > 0 ? (
+              Object.keys(categoryWiseData).map((category) => (
+                <tr key={category}>
+                  <td>{category}</td>
+                  <td>{categoryWiseData[category].breakfast}</td>
+                  <td>{categoryWiseData[category].lunch}</td>
+                  <td>{categoryWiseData[category].dinner}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center text-danger">
+                  No Meals Data Available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

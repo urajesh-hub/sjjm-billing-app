@@ -8,12 +8,19 @@ const MealForm = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [mealSelections, setMealSelections] = useState({});
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
     const getEmpData = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL);
         setEmpData(response.data.employees);
+
+        // Extract unique departments dynamically
+        const uniqueDepartments = [
+          ...new Set(response.data.employees.map((emp) => emp.department)),
+        ];
+        setDepartments(uniqueDepartments);
       } catch (err) {
         console.error("Error fetching employees data", err);
       }
@@ -29,7 +36,7 @@ const MealForm = () => {
     setSelectedDepartment(e.target.value);
   };
 
-  const handleCheckboxChange = (empCode, empName,category, department, mealType) => {
+  const handleCheckboxChange = (empCode, empName, category, department, mealType) => {
     setMealSelections((prev) => ({
       ...prev,
       [empCode]: {
@@ -51,7 +58,7 @@ const MealForm = () => {
       .map(emp => ({
         empCode: emp.empCode,
         empName: emp.empName,
-        category:emp.category,
+        category: emp.category,
         department: emp.department,
         date: selectedDate,
         breakfast: mealSelections[emp.empCode]?.breakfast || false,
@@ -67,7 +74,6 @@ const MealForm = () => {
     try {
       for (const meal of selectedMeals) {
         await axios.post(import.meta.env.VITE_MEALFORM_API, meal);
-        
       }
       alert("Meals saved successfully!");
 
@@ -86,7 +92,7 @@ const MealForm = () => {
   };
 
   // Filter employees: check for active status and department
-  const filteredEmpData = empData.filter((emp) => 
+  const filteredEmpData = empData.filter((emp) =>
     emp.status === "Active" && (selectedDepartment ? emp.department === selectedDepartment : true)
   );
 
@@ -116,9 +122,11 @@ const MealForm = () => {
                 onChange={handleDepartmentChange}
               >
                 <option value="">All Departments</option>
-                <option value="Sales">Sales</option>
-                <option value="HR">HR</option>
-                <option value="IT">IT</option>
+                {departments.map((department, index) => (
+                  <option key={index} value={department}>
+                    {department}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -142,7 +150,7 @@ const MealForm = () => {
                   {filteredEmpData.map((emp) => (
                     <tr key={emp.empCode}>
                       <td className="text-center">{emp.empCode}</td>
-                      <td >{emp.empName}</td>
+                      <td>{emp.empName}</td>
                       <td className="text-center">{emp.category}</td>
                       <td className="text-center">{emp.department}</td>
                       <td className="text-center">
@@ -150,7 +158,7 @@ const MealForm = () => {
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.breakfast || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "breakfast")
+                            handleCheckboxChange(emp.empCode, emp.empName, emp.category, emp.department, "breakfast")
                           }
                         />
                       </td>
@@ -159,7 +167,7 @@ const MealForm = () => {
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.lunch || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "lunch")
+                            handleCheckboxChange(emp.empCode, emp.empName, emp.category, emp.department, "lunch")
                           }
                         />
                       </td>
@@ -168,7 +176,7 @@ const MealForm = () => {
                           type="checkbox"
                           checked={mealSelections[emp.empCode]?.dinner || false}
                           onChange={() =>
-                            handleCheckboxChange(emp.empCode, emp.empName,emp.category, emp.department, "dinner")
+                            handleCheckboxChange(emp.empCode, emp.empName, emp.category, emp.department, "dinner")
                           }
                         />
                       </td>
